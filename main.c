@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <cairo/cairo.h>
+#include <drm_fourcc.h>
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
@@ -49,7 +50,7 @@ static void gen_menu_textures(struct wio_server *server) {
 		cairo_surface_flush(surf);
 		unsigned char *data = cairo_image_surface_get_data(surf);
 		server->menu.inactive_textures[i] = wlr_texture_from_pixels(renderer,
-				WL_SHM_FORMAT_ARGB8888,
+				DRM_FORMAT_ARGB8888,
 				cairo_image_surface_get_stride(surf),
 				extents.width + 2, extents.height + 2, data);
 	}
@@ -66,7 +67,7 @@ static void gen_menu_textures(struct wio_server *server) {
 		cairo_surface_flush(surf);
 		unsigned char *data = cairo_image_surface_get_data(surf);
 		server->menu.active_textures[i] = wlr_texture_from_pixels(renderer,
-				WL_SHM_FORMAT_ARGB8888,
+				DRM_FORMAT_ARGB8888,
 				cairo_image_surface_get_stride(surf),
 				extents.width + 2, extents.height + 2, data);
 	}
@@ -152,7 +153,7 @@ int main(int argc, char **argv) {
 	}
 
 	server.wl_display = wl_display_create();
-	server.backend = wlr_backend_autocreate(server.wl_display, NULL);
+	server.backend = wlr_backend_autocreate(server.wl_display);
 	server.renderer = wlr_backend_get_renderer(server.backend);
 	wlr_renderer_init_wl_display(server.renderer, server.wl_display);
 
