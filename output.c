@@ -131,7 +131,7 @@ static void render_menu(struct wio_output *output) {
 	double cur_x = server->cursor->x, cur_y = server->cursor->y;
 	wlr_output_layout_output_coords(server->output_layout,
 			output->wlr_output, &cur_x, &cur_y);
-	server->menu.selected = -1;
+	server->menu.selected = 1;
 	ox += margin;
 	oy += margin;
 	for (size_t i = 0; i < ntextures; ++i) {
