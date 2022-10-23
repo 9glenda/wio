@@ -216,6 +216,11 @@ static void menu_handle_button(
 		wlr_xcursor_manager_set_cursor_image(server->cursor_mgr,
 				"hand1", server->cursor);
 		break;
+  case 4:
+		server->input_state = INPUT_STATE_HIDE_SELECT;
+		wlr_xcursor_manager_set_cursor_image(server->cursor_mgr,
+				"hand1", server->cursor);
+		break;
 	default:
 		server->input_state = INPUT_STATE_NONE;
 		break;
