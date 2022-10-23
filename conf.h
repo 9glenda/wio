@@ -1,1 +1,1 @@
-#define MODERN=true
+#define MODERN 1
