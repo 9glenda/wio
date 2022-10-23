@@ -124,9 +124,23 @@ static void process_cursor_motion(struct wio_server *server, uint32_t time) {
 		case INPUT_STATE_RESIZE_SELECT:
 		case INPUT_STATE_DELETE_SELECT:
 		case INPUT_STATE_HIDE_SELECT:
-			wlr_xcursor_manager_set_cursor_image(server->cursor_mgr,
-					"hand1", server->cursor);
-			break;
+    if (event->state == WLR_BUTTON_PRESSED) {
+      double sx, sy;
+      int view_area;
+      struct wlr_surface *surface = NULL;
+      struct wio_view *view = wio_view_at(server,
+          server->cursor->x, server->cursor->y, &surface, &sx, &sy,
+          &view_area);
+      if (view != NULL) {
+        wlr_xdg_toplevel_send_close(view->xdg_surface);
+      }
+      view_end_interactive(server);
+    }
+    break;
+  default:
+    // TODO
+    break;
+  }
 		case INPUT_STATE_MOVE:
 			wlr_xcursor_manager_set_cursor_image(server->cursor_mgr,
 					"grabbing", server->cursor);
