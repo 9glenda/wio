@@ -26,7 +26,6 @@
 #include "layers.h"
 #include "server.h"
 #include "view.h"
-#include "conf.h"
 
 static void gen_menu_textures(struct wio_server *server) {
 	struct wlr_renderer *renderer = server->renderer;
@@ -38,11 +37,7 @@ static void gen_menu_textures(struct wio_server *server) {
 	cairo_set_font_size(cairo, 14);
 	cairo_set_source_rgb(cairo, 0, 0, 0);
 
-#if MODERN
-	char *text[] = { "New", "Resize", "Move", "Delete", "Hide", "Exit" };
-#else
 	char *text[] = { "New", "Resize", "Move", "Delete", "Hide" };
-#endif
 	for (size_t i = 0; i < sizeof(text) / sizeof(text[0]); ++i) {
 		cairo_set_operator(cairo, CAIRO_OPERATOR_CLEAR);
 		cairo_paint(cairo);
