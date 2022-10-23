@@ -137,10 +137,7 @@ static void process_cursor_motion(struct wio_server *server, uint32_t time) {
       view_end_interactive(server);
     }
     break;
-  default:
-    // TODO
-    break;
-  }
+  
 		case INPUT_STATE_MOVE:
 			wlr_xcursor_manager_set_cursor_image(server->cursor_mgr,
 					"grabbing", server->cursor);
