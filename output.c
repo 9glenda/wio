@@ -18,7 +18,7 @@ struct render_data {
 	struct wio_view *view;
 	struct timespec *when;
 };
-int menu_selected_last = -1;
+size_t menu_selected_last = -1;
 
 static void render_surface(struct wlr_surface *surface,
 		int sx, int sy, void *data) {
@@ -147,7 +147,7 @@ static void render_menu(struct wio_output *output) {
 		box.height = height + margin;
 		if (wlr_box_contains_point(&box, cur_x, cur_y)) {
 			server->menu.selected = i;
-      menu_selected_last = menu_selected;
+      menu_selected_last = i;
 			texture = server->menu.active_textures[i];
 			scale_box(&box, scale);
 			wlr_render_rect(renderer, &box, menu_selected,
