@@ -531,7 +531,7 @@ static void handle_button_internal(
 					server->cursor->x, server->cursor->y, &surface, &sx, &sy,
 					&view_area);
 			if (view != NULL) {
-				wlr_xdg_toplevel_send_close(view->xdg_surface);
+				wlr_xdg_toplevel_send_hide(view->xdg_surface);
 			}
 			view_end_interactive(server);
 		}
