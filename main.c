@@ -100,7 +100,7 @@ static enum wl_output_transform str_to_transform(const char *str) {
 
 int main(int argc, char **argv) {
 	struct wio_server server = { 0 };
-	server.cage = "cage -d";
+	server.cage = "cage -d -s";
 	server.term = "alacritty";
 	wlr_log_init(WLR_DEBUG, NULL);
 	wl_list_init(&server.output_configs);
